@@ -1,0 +1,54 @@
+<html>
+  <body>
+    <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : 'YOU-APP-ID',
+        xfbml      : true,
+        version    : 'v2.9'
+      });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function login() {
+      FB.login(function(response) {
+        console.log("Entrando a facebook");
+
+      }, {scope: ['publish_actions','email']});
+    }
+
+    function publica(){
+      FB.api('/me/feed', 'post', {message: 'Hola Facebook'});
+      console.log("Publicado Mensaje");
+    }
+    function extraeUser(){
+      FB.api('/me', {fields: ['first_name','last_name','email']}, function(response) {
+        console.log(response);
+      });
+    }
+
+    function logout() {
+      FB.logout(function(response) {
+        console.log("Estas Fuera de facebook");
+      });
+    }
+
+    </script>
+
+    <button onclick="javascript:login();">Login Facebook</button>
+    <br>
+    <button onclick="javascript:logout();">Logout Facebook</button>
+    <br>
+    <button onclick="javascript:publica();">Publica en perfil</button>
+    <br>
+    <button onclick="javascript:extraeUser();">Data del USUARIO</button>
+  </body>
+</html>
