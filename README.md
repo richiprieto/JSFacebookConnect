@@ -1,2 +1,2 @@
 # JSFacebookConnect
-Example to Connect to Facebook using "facebook-jssdk"
+Example: Connection to Facebook using "facebook-jssdk"
